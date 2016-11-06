@@ -1,9 +1,39 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function Route(app){
+	// root route to render the index.ejs view
+	app.get('/', function(req, res) {
+	 res.render("index");
+	})
+	// post route for adding a data from a survey
+	app.post('/result', function(req, res) {
+		submitted_info = {
+			name: req.body.name,
+			dojo_location: req.body.dojo_location,
+			favorite_language: req.body.favorite_language,
+			comment: req.body.comment
+		};
+	 	res.render("result",{user_data: submitted_info});
+	})
+};
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+// var express = require('express');
+// var router = express.Router();
 
-module.exports = router;
+// router.get('/', function(req, res){
+//   res.render('index', {
+//     title: 'Home'
+//   });
+// });
+
+// router.get('/about', function(req, res){
+//   res.render('about', {
+//     title: 'About'
+//   });
+// });
+
+// router.get('/contact', function(req, res){
+//   res.render('contact', {
+//     title: 'Contact'
+//   });
+// });
+
+// module.exports = router;
